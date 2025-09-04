@@ -1,80 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--Fuente-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
 
-    <link rel="stylesheet" href="../css/styles.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chein</title>
-    <script src="./cardDetails.js" type="module" defer DOMContentLoaded></script>
-    <script src="./app.js" type="module" defer></script>
-    <script src="./object/message.js" type="module" defer></script>
-    <script src="./object/card.js" type="module" defer></script>
-    <script src="./DOM.js" type="module" defer></script>
-  </head>
-  <body>
-    <header>
-      <div class="header">
-         <h1 class="headerTitle">CHEIN</h1>
-         <img src="../src/down_arrow.svg" alt="Icon" class="nav-button">
-        <div class="down-section">
-          <div class="cart-container">
-            <p class="cart-count">0</p>
-          </div>
-          <nav class="nav-container">
-            <a href="./index.html" class="button">Home</a>
-            <a href="./cart.html" class="button">Cart</a>
-            <a href="./index.html" class="button">Contact us</a>
-          </nav>
-          <img src="../src/profile.svg" alt="Profile Picture" class="profileImg" />
+<head>
+  <!--Fuente-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chein</title>
+  <script src="./cardDetails.js" type="module" defer DOMContentLoaded></script>
+  <script src="./app.js" type="module" defer></script>
+  <script src="./object/message.js" type="module" defer></script>
+  <script src="./object/card.js" type="module" defer></script>
+  <script src="./DOM.js" type="module" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <h1 class="headerTitle">CHEIN</h1>
+      <img src="../src/down_arrow.svg" alt="Icon" class="nav-button">
+      <div class="down-section">
+        <div class="cart-container">
+          <p class="cart-count">0</p>
         </div>
-    </header>
-    <section class="filter-section">
-      <div class="open-filter-button">
-        <img src="../src/filter_open.svg" alt="Icon" class="open-filter-buton-image">
-        <p class="open-filter-button-title">Close Filter</p>
+        <nav class="nav-container">
+          <a href="./index.html" class="button">Home</a>
+          <a href="./cart.html" class="button">Cart</a>
+          <a href="./index.html" class="button">Contact us</a>
+        </nav>
+        <img src="../src/profile.svg" alt="Profile Picture" class="profileImg" />
       </div>
-      <form action="" class="filter-form">
-        <div class="div-container">
-          <div class="container">
-            <label for="category" class="cat">Category</label>
-            <select name="category" id="category" class="formSelect">
-              <option value="all">all</option>
-            </select>
-          </div>
-          <div class="container">
-            <input type="checkbox" id="checkPrice">
+  </header>
+  <section class="filter-section">
+    <div class="open-filter-button">
+      <img src="../src/filter_open.svg" alt="Icon" class="open-filter-buton-image">
+      <p class="open-filter-button-title">Close Filter</p>
+    </div>
+    <form action="" class="filter-form">
+      <div class="div-container">
+        <div class="container">
+          <label for="category" class="cat">Category</label>
+          <select name="category" id="category" class="formSelect">
+            <option value="all">all</option>
+          </select>
+        </div>
+        <div class="container">
+          <input type="checkbox" id="checkPrice">
 
-            <label for="Price">Price</label>
-            <input type="number" id="PriceMin" placeholder="Min" min="0" step="0.01"/>
-            <input type="number" id="PriceMax" placeholder="Max" min="0" step="0.01"/>
-          </div>
-          <div class="container">
-            <input type="checkbox" id="rateCheck">
-            <label for="rate">MinRate</label>
-            <input type="number" id="rate" max="5" min="0" placeholder="rate" step="0.01" />
-          </div>
-          
+          <label for="Price">Price</label>
+          <input type="number" id="PriceMin" placeholder="Min" min="0" step="0.01" />
+          <input type="number" id="PriceMax" placeholder="Max" min="0" step="0.01" />
         </div>
-        <div class="another-container">
-          <input type="text" id="searchBar" placeholder="Search by words">
-          <button class="sButton">Search</button>
+        <div class="container">
+          <input type="checkbox" id="rateCheck">
+          <label for="rate">MinRate</label>
+          <input type="number" id="rate" max="5" min="0" placeholder="rate" step="0.01" />
         </div>
-        
-      </form>
-    </section>
-    <main>
-      <div class="mainContainer">
-        <div class="mainCards"></div>
+
       </div>
-    </main>
+      <div class="another-container">
+        <input type="text" id="searchBar" placeholder="Search by words">
+        <button class="sButton">Search</button>
+      </div>
 
-  </body>
+    </form>
+  </section>
+  <main>
+    <div class="mainContainer">
+      <div class="mainCards"></div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer">
+      <div class="footer-left">
+        <h1 class="footerTitle">CHEIN</h1>
+        <p class="raye"></p>
+        <p class="cpr">© CHEIN 2025</p>
+
+      </div>
+      <div class="footer-right">
+        <div class="redes">
+          <h3 class="redest">Redes Sociales:</h3>
+          <section class="ig">
+            <a target="_blank" href="https://www.instagram.com/sara_nunez_00/"><img src="../src/ig.png" alt=""></a>
+
+            <a href="https://workspace.google.com/intl/es-419/gmail/"><img height="25" src="../src/logogmail.png"></a>
+          </section>
+          <a class="pag" href="#">Nuestra pagina CHEIN</a>
+        </div>
+  </footer>
+</body>
+
 </html>
