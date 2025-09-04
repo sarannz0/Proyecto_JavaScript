@@ -102,6 +102,7 @@ function filter() {
   console.log(formulario.bar)
   console.log(formulario);
   let objectosFiltrados = [];
+  let searched = formulario.bar.join(" ");
 
   geo.forEach((e) => {
 
@@ -138,6 +139,7 @@ function filter() {
     return
 
   } else {
+    let resultados = objectosFiltrados.length;
     console.log(objectosFiltrados);
     renderCard(objectosFiltrados);
   }
