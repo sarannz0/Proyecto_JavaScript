@@ -22,3 +22,4 @@ export const dataFrom = async () => {
     return {};
   }
 };
+
