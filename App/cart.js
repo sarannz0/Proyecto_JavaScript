@@ -24,11 +24,11 @@ iclear.addEventListener("click", () => {
 export function updateCartData() {
     Localcart = localStorage.getItem("Cart");
     cart = Localcart ? JSON.parse(Localcart) : [];
+    console.log(cart);
     let subtotal = 0;
     cart.forEach( e => {
-      subtotal += e.price;
-    })
-
+      subtotal += e.price * e.cant;
+    });
     cards.innerHTML = "";
 
     iTotal.textContent = `Subtotal: $${subtotal.toFixed(2)} (USD)`;
@@ -43,7 +43,7 @@ function renderCard(obj) {
   
   obj.forEach((e) => {
     const element = document.createElement("cart-card");
-        element.renderCart(e.title, e.price, e.image, e.rating.rate, e.rating.count, e.description, e.id);
+        element.renderCart(e.title, e.price, e.image, e.rating.rate, e.rating.count, e.description, e.id, e.cant);
         document.querySelector("main").appendChild(element);
   })
   }
