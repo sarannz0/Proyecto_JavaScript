@@ -65,8 +65,6 @@ export class Card extends HTMLElement {
             }
             
             this.onCart = cart.some(e => e.id === obj.id);
-            
-
         });
 
         const detailsButton = this.shadowRoot.querySelector(".titleCard");

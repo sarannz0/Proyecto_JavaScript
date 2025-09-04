@@ -15,21 +15,17 @@ export class CartObj extends HTMLElement {
         super();
         this.attachShadow({mode: 'open'});
         this.onCart = false;
-        this.cant = 0;
     }
 
     connectedCallback() {
-        Localcart = localStorage.getItem("Cart");
-        cart = Localcart ? JSON.parse(Localcart) : [];
+        cart = this.reloadCart();
         const obj = this.getObject(this.id, cart);
         const deleteButton = this.shadowRoot.querySelector(".cardButton");
 
         deleteButton.addEventListener("click", () => {
             console.log("hi");
             setMessage("Operación", "Item removido correctamente");
-            cart.forEach((e, i) => {
-                if (e.id == this.id) { cart.splice(i, 1)}
-            })
+            cart.forEach((e, i) => {if (e.id == this.id) { cart.splice(i, 1)}});
             localStorage.setItem("Cart", JSON.stringify(cart));
             updateCartUI();
             updateCartData();
@@ -37,21 +33,12 @@ export class CartObj extends HTMLElement {
         });
 
         const moreBtn = this.shadowRoot.querySelector(".more-button");
-        const cantText = this.shadowRoot.querySelector(".pCount");
-
-        moreBtn.addEventListener("click", () => {
-            obj.cant += 1;
-            cart.forEach((e) => {
-                if (cart.id === obj.id) {
-                    e.cant = obj.cant;
-                }
-            });
-            cantText.textContent = obj.cant;
-            localStorage.setItem("Cart", JSON.stringify(cart));
-            updateCartData();
-        })
-
+        const minusBtn = this.shadowRoot.querySelector(".minus-button");
+        
+        minusBtn.addEventListener("click", () => this.setCant("remove", obj));
+        moreBtn.addEventListener("click", () => this.setCant("add", obj));
         const detailsButton = this.shadowRoot.querySelector(".titleCard");
+
 
         detailsButton.addEventListener("click", () => {
             console.log("Click!");
@@ -388,6 +375,25 @@ export class CartObj extends HTMLElement {
         return geo.find(e => e.id == id);
     }
 
+    reloadCart() {
+        Localcart = localStorage.getItem("Cart");
+        return Localcart ? JSON.parse(Localcart) : [];
+    }
+
+    setCant(type, obj) {
+        const cantText = this.shadowRoot.querySelector(".pCount");
+        cart = this.reloadCart();
+
+        type === "add" ? obj.cant += 1 : obj.cant > 1 ? obj.cant -= 1: obj.cant = obj.cant;
+        cart.forEach((e, i) => {
+            if (e.id === obj.id) {
+                cart[i].cant = obj.cant;
+            }
+        });
+        cantText.textContent = obj.cant;
+        localStorage.setItem("Cart", JSON.stringify(cart));
+        updateCartData();
+    }
 }
 
 customElements.define("cart-card", CartObj);

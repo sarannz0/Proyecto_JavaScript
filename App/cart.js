@@ -24,15 +24,19 @@ iclear.addEventListener("click", () => {
 export function updateCartData() {
     Localcart = localStorage.getItem("Cart");
     cart = Localcart ? JSON.parse(Localcart) : [];
+    let cantP = 0;
+
     console.log(cart);
     let subtotal = 0;
-    cart.forEach( e => {
+    cart.forEach( (e) => {
       subtotal += e.price * e.cant;
+      cantP += e.cant;
     });
     cards.innerHTML = "";
 
     iTotal.textContent = `Subtotal: $${subtotal.toFixed(2)} (USD)`;
-    iProducts.textContent = `Products: ${cart.length}`;
+
+    iProducts.textContent = `Total products: ${cantP}`;
 }
 
 
