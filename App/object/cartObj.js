@@ -15,10 +15,13 @@ export class CartObj extends HTMLElement {
         super();
         this.attachShadow({mode: 'open'});
         this.onCart = false;
+        this.cant = 0;
     }
 
     connectedCallback() {
-        const obj = this.getObject(this.id, geo);
+        Localcart = localStorage.getItem("Cart");
+        cart = Localcart ? JSON.parse(Localcart) : [];
+        const obj = this.getObject(this.id, cart);
         const deleteButton = this.shadowRoot.querySelector(".cardButton");
 
         deleteButton.addEventListener("click", () => {
@@ -33,6 +36,20 @@ export class CartObj extends HTMLElement {
             this.remove();
         });
 
+        const moreBtn = this.shadowRoot.querySelector(".more-button");
+        const cantText = this.shadowRoot.querySelector(".pCount");
+
+        moreBtn.addEventListener("click", () => {
+            obj.cant += 1;
+            cart.forEach((e) => {
+                if (cart.id === obj.id) {
+                    e.cant = obj.cant;
+                }
+            });
+            cantText.textContent = obj.cant;
+            localStorage.setItem("Cart", JSON.stringify(cart));
+            updateCartData();
+        })
 
         const detailsButton = this.shadowRoot.querySelector(".titleCard");
 
@@ -45,7 +62,7 @@ export class CartObj extends HTMLElement {
         })
     }
 
-    renderCart(title, price, img, rate, rateCount, dec, id) {
+    renderCart(title, price, img, rate, rateCount, dec, id, cant) {
         this.id = id;
         this.shadowRoot.innerHTML = `
             <style>
@@ -193,6 +210,49 @@ export class CartObj extends HTMLElement {
                     cursor: pointer;
                     transform: scale(103%);
                 }
+
+                .quant-container {
+                    font-family: var(--bodyFont);
+                    margin-top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-radius: 10px;
+                    width: 35px;
+                    height: 80px;
+                    background-color: color: rgb(255, 255, 255);
+                    box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.199);
+                    overflow: hidden;
+                    font-weight: bold;
+                    
+                }
+
+                .more-button, .minus-button {
+                    
+                    cursor: pointer;
+                    text-align: center;
+                    padding: 4px 0px;
+                    width: 100%;
+                    transition: all 0.3s ease;
+                }
+
+                .more-button:hover, .minus-button:hover {
+                    background-color: rgb(197, 197, 197);
+                }
+
+
+
+                .quant-container p {
+                    margin: 0px;
+                }
+                
+                .right-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                }
                 
                 @media (min-width: 910px) and (max-width: 1150px) {
                     .itemCard {
@@ -200,6 +260,7 @@ export class CartObj extends HTMLElement {
                     }
                 }
 
+                
 
                 @media (max-width: 910px) and (min-width: 580px){ 
                     .itemCard {
@@ -217,6 +278,38 @@ export class CartObj extends HTMLElement {
 
 
                 @media (max-width: 580px) { 
+                    .more-button, .minus-button {
+                        cursor: pointer;
+                        text-align: center;
+                        padding: 10px 20px;
+                        width: 20px;
+                        transition: all 0.3s ease;
+                    }
+
+                    .right-container {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                    .quant-container {
+                        font-family: var(--bodyFont);
+                        margin-top: 30px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-radius: 10px;
+                        width: 300px;
+                        height: 40px;
+                        background-color: color: rgb(255, 255, 255);
+                        box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.199);
+                        overflow: hidden;
+                    
+                    }
+
                     .itemCard {
                         padding: 20px;
                         width: 300px;
@@ -276,11 +369,16 @@ export class CartObj extends HTMLElement {
                     <img src="../src/star.svg" alt="Icon" />
                     <p class="cardRate">${rate}</p>
                 </div>
-
                 <p class="cardRateCount">( ${rateCount})</p>
             </div>
-            <div class="cardButton"></div>
-            
+            <div class="right-container">
+                <div class="quant-container">
+                    <div class="more-button">+</div>
+                    <p class="pCount"> ${cant} </p>
+                    <div class="minus-button">-</div>
+                </div>            
+                <div class="cardButton"></div>
+            </div>
         </div>
 
         `;

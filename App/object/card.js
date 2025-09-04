@@ -43,6 +43,8 @@ export class Card extends HTMLElement {
             this.onCart = cart.some(e => e.id === obj.id);
 
             if (!this.onCart) {
+                obj.cant = 1;
+                console.log(obj);
                 cart.push(obj);
                 button.textContent = "Remove from cart";
                 console.log(cart);
