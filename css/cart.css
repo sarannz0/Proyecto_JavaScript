@@ -107,8 +107,7 @@
 
 .footer-left {
 position: relative;
- width: 17%;
- min-width: 400px;
+ min-width: 200px;
  background-color: var(--black-color);
  height: 100%;
  
@@ -362,7 +361,7 @@ main {
   gap: 30px;
   min-width: 300px;
   margin-top: 40px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 @keyframes contentAnimation {
@@ -690,6 +689,7 @@ font-weight: bold;
   
   @media (max-width: 580px) and (min-width: 0px) {
     .footer {
+      width: 100%;
       flex-direction: column;
       height: 300px;
       align-items: center;

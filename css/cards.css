@@ -107,8 +107,8 @@ body {
 
 .footer-left {
 position: relative;
- width: 17%;
- min-width: 400px;
+
+ min-width: 200px;
  background-color: var(--black-color);
  height: 100%;
  

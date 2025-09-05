@@ -33,6 +33,7 @@ export class Card extends HTMLElement {
 
         // Añadir al carrito
         button.addEventListener("click", () => {
+            obj.cant = 1;
             LocalCart = localStorage.getItem("Cart");
             cart = LocalCart ? JSON.parse(LocalCart) : []; 
 
@@ -53,6 +54,7 @@ export class Card extends HTMLElement {
                 updateCartUI();
                 /* this.onCart = true; */
             } else {
+                obj.cant = 1;
                 cart.forEach((e, i) => {
                     if (e.id == this.id) { cart.splice(i, 1)}
                 })

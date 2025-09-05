@@ -9,16 +9,19 @@ const iProducts = document.querySelector(".info-products");
 const iTotal = document.querySelector(".info-total");
 const iclear = document.querySelector(".clearCart-button");
 const cards = document.querySelectorAll("main");
+const footer = document.querySelector("footer");
+
 
 iclear.addEventListener("click", () => {
   cart.forEach((e, i) => {
     cart.splice(i, cart.length);
   })
   localStorage.setItem("Cart", JSON.stringify(cart));
-  document.body.appendChild(document.querySelector(main));
+  
   updateCartUI();
   updateCartData();
   cards.forEach(c => c.remove());
+  footer.parentNode.insertBefore(document.createElement("main"), footer);
 })
 
 

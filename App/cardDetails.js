@@ -39,6 +39,7 @@ cartButton.addEventListener("click", () => {
     onCart = cart.some(e => e.id === ActualObj.id);
 
     if(!onCart) {
+        ActualObj.cant = 1;
         cart.push(ActualObj);
         cartButton.textContent = "Remove from cart"
         onCart = true;

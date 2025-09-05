@@ -67,8 +67,6 @@ if (checkPrice && checkRate && fPriceMax && fPriceMin && fRate && fCategory && f
 
   })
 
-
-
   checkRate.addEventListener("click", () => {
     if (checkRate.checked == false) {
       fRate.style.display = "none";
@@ -81,6 +79,8 @@ if (checkPrice && checkRate && fPriceMax && fPriceMin && fRate && fCategory && f
 
   })
 
+let LocalHistory = localStorage.getItem("searchList");
+let history = LocalHistory ? JSON.parse(LocalHistory) : [];
 
 
 function filter() {
@@ -101,8 +101,11 @@ function filter() {
   };
   console.log(formulario.bar)
   console.log(formulario);
+  
+
   let objectosFiltrados = [];
   let searched = formulario.bar.join(" ");
+  console.log(searched)
 
   geo.forEach((e) => {
 
@@ -133,17 +136,28 @@ function filter() {
     objectosFiltrados.push(e);
   });
 
+
+  LocalHistory = localStorage.getItem("searchList");
+  history = LocalHistory ? JSON.parse(LocalHistory) : [];
+  
+  let resultados = objectosFiltrados.length;
+  let searchItem = {
+    result: resultados,
+    msg: searched,
+  }
+  console.log(searchItem);
+  history.push(searchItem);
+  console.log(history);
+  localStorage.setItem("searchList", JSON.stringify(history));
+
   if (objectosFiltrados.length <= 0) {
     setMessage("Error Inesperado", "No fue posible encontrar elementos");
     renderCard(geo);
     return
 
   } else {
-    let resultados = objectosFiltrados.length;
-    console.log(objectosFiltrados);
     renderCard(objectosFiltrados);
   }
-  
 }
 
 fSearchButton.addEventListener("click", (e) => { 

@@ -43,3 +43,7 @@ formButton.addEventListener("click", () => {
 const carritoUI = document.querySelector(".cart-container");
 carritoUI.addEventListener("click", () => document.location.href = "../App/cart.html");
 
+const headerTitle = document.querySelector(".headerTitle");
+headerTitle.style.cursor = "pointer";
+headerTitle.addEventListener("click", () => document.location.href = "../App/index.html");
+

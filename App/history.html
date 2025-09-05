@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chein</title>
   <script src="./DOM.js" type="module" defer></script>
+  <script src="./history.js" type="module" defer></script>
+  <script src="./app.js" type="module" defer></script>
 </head>
 
 <body>
@@ -26,14 +28,32 @@
         <nav class="nav-container">
           <a href="./index.html" class="button">Home</a>
           <a href="./cart.html" class="button">Cart</a>
-          <a href="./index.html" class="button">History</a>v 
+          <a href="./history.html" class="button">History</a>v 
         </nav>
         <img src="../src/profile.svg" alt="Profile Picture" class="profileImg" />
       </div>
   </header>
   <main>
+    <div class="title-container">
+      <div class="left-container">
+        <img src="../src/history-icon.svg" alt="">
+        <h1>Search History</h1>
+      </div>
+
+      
+      <p>Your lastest searches of all time</p>
+      <p class="search-count"> Searches: 0</p>
+
+    </div>
     <div class="mainContainer">
-      <div class="mainCards"></div>
+      <h1 class="text-alone" style="text-align: center;">Nothing around here...</h1>
+      <!-- <div class="search-item">
+        <div class="left-search-container">
+          <img src="../src/keep.svg" alt="">
+          <h3 class="search-text">Busqueda xd</h3>
+        </div>
+        <p class="search-results"> Resultados: 4</p>
+      </div> -->
     </div>
   </main>
   <footer>
