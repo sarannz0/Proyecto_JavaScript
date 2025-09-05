@@ -139,25 +139,29 @@ function filter() {
 
   LocalHistory = localStorage.getItem("searchList");
   history = LocalHistory ? JSON.parse(LocalHistory) : [];
-  
   let resultados = objectosFiltrados.length;
   let searchItem = {
     result: resultados,
     msg: searched,
   }
-  console.log(searchItem);
-  history.push(searchItem);
-  console.log(history);
-  localStorage.setItem("searchList", JSON.stringify(history));
-
-  if (objectosFiltrados.length <= 0) {
-    setMessage("Error Inesperado", "No fue posible encontrar elementos");
-    renderCard(geo);
-    return
-
-  } else {
-    renderCard(objectosFiltrados);
+  
+  if (searched.length > 0) {
+    console.log(searchItem);
+    history.push(searchItem);
+    console.log(history);
+    localStorage.setItem("searchList", JSON.stringify(history));
   }
+
+    if (objectosFiltrados.length <= 0) {
+      setMessage("Error Inesperado", "No fue posible encontrar elementos");
+      renderCard(geo);
+      return
+
+    } else {
+      renderCard(objectosFiltrados);
+    }
+  
+  
 }
 
 fSearchButton.addEventListener("click", (e) => { 
