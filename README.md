@@ -13,8 +13,8 @@ Permite a los usuarios **agregar, quitar y visualizar productos** de manera din�
 3. [Uso](#-uso)
 4. [Tecnologías](#-tecnologías)
 5. [Estructura del Proyecto](#-estructura-del-proyecto)
-6. [Diseño Responsivo y Usabilidad]()
-7. [Bocetos o wireframes]
+6. [Diseño Responsivo y Usabilidad](#diseño-responsivo-y-usabilidad)
+7. [Bocetos o wireframes](#-bocetos-o-wireframes)
 8. [Autor](#-autor)
 
 ---
