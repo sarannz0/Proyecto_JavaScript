@@ -2,6 +2,8 @@ import { dataFrom } from "../api.js";
 import { parseEvent } from "../helper.js";
 import { setMessage, updateCartUI } from "../app.js";
 import { updateCartData } from "../cart.js";
+import { desCart } from "../cart.js";
+
 const geo = await dataFrom(parseEvent);
 
 let Localcart = localStorage.getItem("Cart");
@@ -367,8 +369,8 @@ export class CartObj extends HTMLElement {
                 <div class="cardButton"></div>
             </div>
         </div>
-
-        `;
+ 
+       `;
     }
 
     getObject(id, geo) {

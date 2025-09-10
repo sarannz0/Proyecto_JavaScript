@@ -43,6 +43,24 @@ export function updateCartData() {
     iProducts.textContent = `Total products: ${cantP}`;
 }
 
+export function desCart() {
+  Localcart = localStorage.getItem("Cart");
+  cart = Localcart ? JSON.parse(Localcart) : [];
+  let cantP = 0;
+
+  console.log(cart);
+  let subtotal = 0;
+  cart.forEach( (e) => {
+    subtotal += e.price * e.cant;
+    cantP += e.cant;
+  });
+  cards.innerHTML = "";
+
+  iTotal.textContent = `Subtotal: $${subtotal.toFixed(2)} (USD)`;
+
+  iProducts.textContent = `Total products: ${cantP}`;
+}
+
 
 function renderCard(obj) {
   const mainCard = document.querySelector("main");
@@ -59,3 +77,4 @@ function renderCard(obj) {
 }
 renderCard(cart);
 updateCartData();
+desCart();
