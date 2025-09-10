@@ -1,7 +1,7 @@
 import { dataFrom } from "../api.js";
 import { parseEvent } from "../helper.js";
 import { setMessage, updateCartUI } from "../app.js";
-import { updateCartData } from "../cart.js";
+import { updateCartData, calcularDesc} from "../cart.js";
 const geo = await dataFrom(parseEvent);
 
 let Localcart = localStorage.getItem("Cart");
@@ -19,7 +19,7 @@ export class CartObj extends HTMLElement {
 
     connectedCallback() {
         cart = this.reloadCart();
-        const obj = this.getObject(this.id, cart);
+        let obj = this.getObject(this.id, cart);
         const deleteButton = this.shadowRoot.querySelector(".cardButton");
 
         deleteButton.addEventListener("click", () => {
@@ -35,8 +35,17 @@ export class CartObj extends HTMLElement {
         const moreBtn = this.shadowRoot.querySelector(".more-button");
         const minusBtn = this.shadowRoot.querySelector(".minus-button");
         
-        minusBtn.addEventListener("click", () => this.setCant("remove", obj));
-        moreBtn.addEventListener("click", () => this.setCant("add", obj));
+        minusBtn.addEventListener("click", () => {
+            cart = this.reloadCart();
+            obj = this.getObject(this.id, cart);
+            this.setCant("remove", obj);
+            
+        });
+        moreBtn.addEventListener("click", () => {
+            cart = this.reloadCart();
+            obj = this.getObject(this.id, cart);
+            this.setCant("add", obj);
+        });
         const detailsButton = this.shadowRoot.querySelector(".titleCard");
 
 
@@ -383,16 +392,24 @@ export class CartObj extends HTMLElement {
     setCant(type, obj) {
         const cantText = this.shadowRoot.querySelector(".pCount");
         cart = this.reloadCart();
+        if (cart.cant < 1 ) {cart.cant = 1}
+        
+        console.log(type);
 
         type === "add" ? obj.cant += 1 : obj.cant > 1 ? obj.cant -= 1: obj.cant = obj.cant;
+
         cart.forEach((e, i) => {
             if (e.id === obj.id) {
                 cart[i].cant = obj.cant;
             }
         });
+
+
+
         cantText.textContent = obj.cant;
         localStorage.setItem("Cart", JSON.stringify(cart));
         updateCartData();
+        calcularDesc();
     }
 }
 
